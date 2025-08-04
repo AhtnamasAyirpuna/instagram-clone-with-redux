@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './App.css';
-import { Button, Col, Row, Container } from 'react-bootstrap';
+import { Button, Col, Row, Container, Image } from 'react-bootstrap';
 import IconButton from './components/IconButton';
 import ProfileHeader from './components/ProfileHeader';
 import { createContext } from 'react';
@@ -26,7 +26,7 @@ function App() {
           <IconButton className="bi bi-chat" />
           <IconButton className="bi bi-heart" />
           <IconButton className="bi bi-plus-square" />
-          <IconButton className="bi bi-person-circle" />
+          <IconButton imageSrc="https://sig1.co/logo-1" />
           <IconButton className="bi bi-list" isBottom />
         </Col>
         <Col sm={11}>
