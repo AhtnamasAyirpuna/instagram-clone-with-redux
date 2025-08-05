@@ -6,6 +6,7 @@ import ProfileHeader from './components/ProfileHeader';
 import { createContext } from 'react';
 import { PROFILE_DATA } from './data';
 import ImageGrid from './components/ImageGrid';
+import Highlight from './components/Highlight';
 
 export const ProfileContext = createContext(null);
 
@@ -32,6 +33,7 @@ function App() {
         <Col sm={11}>
           <Container>
             <ProfileHeader />
+            <Highlight />
             <ImageGrid />
           </Container>
         </Col>
