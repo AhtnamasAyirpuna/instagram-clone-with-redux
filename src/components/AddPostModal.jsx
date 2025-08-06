@@ -1,5 +1,5 @@
 import {useContext, useState} from "react"
-import {Button, Col, Form, form, Image, Modal, Row} from "react-bootstrap";
+import {Button, Col, Form, Image, Modal, Row} from "react-bootstrap";
 import { ProfileContext } from "../App";
 
 export default function AddPostModal({show, handleClose}) {
