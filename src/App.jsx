@@ -5,8 +5,8 @@ import IconButton from './components/IconButton';
 import ProfileHeader from './components/ProfileHeader';
 import { createContext } from 'react';
 import { PROFILE_DATA } from './data';
-import ImageGrid from './components/ImageGrid';
 import Highlight from './components/Highlight';
+import TabsClone from './components/TabsClone';
 
 export const ProfileContext = createContext(null);
 
@@ -34,7 +34,8 @@ function App() {
           <Container>
             <ProfileHeader />
             <Highlight />
-            <ImageGrid />
+            <TabsClone />
+            
           </Container>
         </Col>
       </Row>
