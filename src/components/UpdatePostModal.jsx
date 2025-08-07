@@ -24,7 +24,7 @@ export default function UpdatePostModal({show, handleClose, postId}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (imageUrl) {
-            dispatch(createPost({image: imageUrl, description}));
+            dispatch(updatePost({id: postId, image: imageUrl, description}));
             setImageUrl("");
             setDescription("");
             handleClose()
@@ -44,7 +44,7 @@ export default function UpdatePostModal({show, handleClose, postId}) {
     return (
         <Modal show={show} onHide={handleClose} size="lg">
             <Modal.Header>
-                <Modal.Title>Create new post</Modal.Title>
+                <Modal.Title>Edit Post</Modal.Title>
             </Modal.Header>
             <Form onSubmit={handleSubmit}>
                 <Modal.Body>
