@@ -27,7 +27,7 @@ const postsSlice = createSlice({
         createPost: (state, action) => {
             const newPost = {
                 id: Date.now(),
-                image: AccordionButton.payload.image,
+                image: action.payload.image,
                 description: action.payload.description,
                 date: new Date().toISOString(),
                 likes: 0,
@@ -35,9 +35,13 @@ const postsSlice = createSlice({
             };
             state.push(newPost);
         },
+        updatePost: (state,action) => {
+            const index = state.findIndex((post) => post.id === action.payload.id);
+            state[index] = action.payload;
+        }
     },
 });
 
-export const {createPost} = postsSlice.actions;
+export const {createPost, updatePost} = postsSlice.actions;
 
 export default postsSlice.reducer;

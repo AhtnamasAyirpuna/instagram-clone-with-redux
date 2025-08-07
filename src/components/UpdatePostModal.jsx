@@ -1,16 +1,25 @@
-import {useContext, useState} from "react"
+import {useContext, useEffect, useState} from "react"
 import {Button, Col, Form, Image, Modal, Row} from "react-bootstrap";
 import { ProfileContext } from "../App";
-import {useDispatch} from "react-redux";
-import {createPost} from "../features/posts/postsSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {updatePost} from "../features/posts/postsSlice";
 
-export default function AddPostModal({show, handleClose}) {
+export default function UpdatePostModal({show, handleClose, postId}) {
     const {image, name} = useContext(ProfileContext);
     const dispatch = useDispatch();
+
+    const post = useSelector((state) => state.posts.find((post) => post.id === postId));
 
     const [imageUrl, setImageUrl] = useState("");
     const [description, setDescription] = useState("");
     const [invalidUrl, setInvalidUrl] = useState(false);
+
+    useEffect(() => {
+        if (post) {
+            setImageUrl(post.image);
+            setDescription(post.description);
+        }
+    }, [post]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
