@@ -1,13 +1,14 @@
-import { useContext} from 'react';
+import { useContext, useState } from 'react';
 import './App.css';
 import { Button, Col, Row, Container, Image } from 'react-bootstrap';
 import IconButton from './components/IconButton';
 import ProfileHeader from './components/ProfileHeader';
-import { createContext, useState } from 'react';
+import { createContext } from 'react';
 import { PROFILE_DATA } from './data';
+import ImageGrid from './components/ImageGrid';
 import Highlight from './components/Highlight';
-import TabsClone from './components/TabsClone';
-import AddPostModal from './components/AddPostModal';
+import AddPostModal from "./components/AddPostModal";
+
 
 export const ProfileContext = createContext(null);
 
@@ -31,7 +32,7 @@ function App() {
           <IconButton className="bi bi-film" />
           <IconButton className="bi bi-chat" />
           <IconButton className="bi bi-heart" />
-          <IconButton className="bi bi-plus-square" onClick={openModal}/>
+          <IconButton className="bi bi-plus-square" />
           <IconButton imageSrc="https://sig1.co/logo-1" />
           <IconButton className="bi bi-list" isBottom />
         </Col>
@@ -39,8 +40,8 @@ function App() {
           <Container>
             <ProfileHeader />
             <Highlight />
-            <TabsClone />
-            <AddPostModal  show={showModal} handleClose={closeModal}/>
+            <ImageGrid />
+            <AddPostModal show={showModal} handleClose={closeModal}/>
           </Container>
         </Col>
       </Row>

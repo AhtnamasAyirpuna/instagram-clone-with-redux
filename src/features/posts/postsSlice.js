@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import { AccordionButton } from "react-bootstrap";
 
 const initialState = [
     {
@@ -38,10 +37,19 @@ const postsSlice = createSlice({
         updatePost: (state,action) => {
             const index = state.findIndex((post) => post.id === action.payload.id);
             state[index] = action.payload;
-        }
+        },
+        deletePost: (state, action) => {
+            return state.filter((post) => post.id !== action.payload);
+        },
+        recordLikes: (state, action) => {
+            const index = state.findIndex((post) => post.id === action.payload);
+            if (index !== -1) {
+                state[index].likes += 1;
+            }
+        },
     },
 });
 
-export const {createPost, updatePost} = postsSlice.actions;
+export const {createPost, updatePost, deletePost, recordLikes} = postsSlice.actions;
 
 export default postsSlice.reducer;
