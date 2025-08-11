@@ -32,7 +32,7 @@ function App() {
           <IconButton className="bi bi-film" />
           <IconButton className="bi bi-chat" />
           <IconButton className="bi bi-heart" />
-          <IconButton className="bi bi-plus-square" />
+          <IconButton className="bi bi-plus-square" onClick={openModal}/>
           <IconButton imageSrc="https://sig1.co/logo-1" />
           <IconButton className="bi bi-list" isBottom />
         </Col>

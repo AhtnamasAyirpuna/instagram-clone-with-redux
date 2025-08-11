@@ -7,7 +7,7 @@ const initialState = [
         description: "Post 1 description",
         date: new Date().toISOString(),
         likes: 15,
-        comments: 5,
+        comments: ["Nice shot!", "Love this!"],
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ const initialState = [
         description: "Post 2 description",
         date: new Date().toISOString(),
         likes: 30,
-        comments: 10,
+        comments: [],
     },
 ];
 
@@ -30,7 +30,7 @@ const postsSlice = createSlice({
                 description: action.payload.description,
                 date: new Date().toISOString(),
                 likes: 0,
-                comments: 0
+                comments: [],
             };
             state.push(newPost);
         },
@@ -47,9 +47,19 @@ const postsSlice = createSlice({
                 state[index].likes += 1;
             }
         },
+        addComment: (state, action) => {
+            const {postId, text} = action.payload;
+            const post = state.find((p) => p.id === postId);
+            if (post) {
+                if (!Array.isArray(post.comments)) {
+                    post.comments = [];
+                }
+                post.comments.push(text);
+            }
+        }
     },
 });
 
-export const {createPost, updatePost, deletePost, recordLikes} = postsSlice.actions;
+export const {createPost, updatePost, deletePost, recordLikes, addComment} = postsSlice.actions;
 
 export default postsSlice.reducer;

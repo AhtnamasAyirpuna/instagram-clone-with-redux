@@ -1,24 +1,32 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { Row, Col, Image, Button } from 'react-bootstrap';
-import { ProfileContext } from '../App';
 import { useSelector, useDispatch } from 'react-redux';
 import UpdatePostModal from './UpdatePostModal';
 import { deletePost, recordLikes } from '../features/posts/postsSlice';
+import PostDetailsModal from './PostDetailsModal';
 
 export default function ImageGrid() {
   const posts = useSelector((state) => state.posts);
-  const [show, setShow] = useState(false);
-  const [currentPost, setCurrentPost] = useState(null);
   const dispatch = useDispatch();
 
+  //state for edit modal
+  const [showEdit, setShowEdit] = useState(false);
+  const [editPostId, setEditPostId] = useState(null);
+
+  //state for details modal 
+  const [showDetails, setShowDetails] = useState(false);
+  const [detailsPostId, setDetailsPostId] = useState(null);
+
   const handleClose = () => {
-    setCurrentPost(null);
-    setShow(false);
+    setEditPostId(null);
+    setShowEdit(false);
   };
-  const handleShow = (post) => {
-    setCurrentPost(post);
-    setShow(true);
+
+  const handleShow = (postId) => {
+    setEditPostId(postId);
+    setShowEdit(true);
   }
+
   const handleDelete = (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this post?")
     if (confirmDelete) {
@@ -26,10 +34,20 @@ export default function ImageGrid() {
    }
   };
 
+  const handleOpenDetails = (postId) => {
+    setDetailsPostId(postId);
+    setShowDetails(true);
+  };
+
+  const handleCloseDetails = () => {
+    setDetailsPostId(null);
+    setShowDetails(false);
+  };
+
   const renderImages = () => {
     return posts.map((post) => (
       <Col md={4} key={post.id} className="mb-4">
-        <Image src={post.image} fluid />
+        <Image src={post.image} fluid style={{cursor: 'pointer'}} onClick={() => handleOpenDetails(post.id)}/>
         <div>{post.likes} likes</div>
         <Button onClick={() => dispatch(recordLikes(post.id))} variant="outline-success">
           <i class="bi bi-hand-thumbs-up"></i>
@@ -47,11 +65,19 @@ export default function ImageGrid() {
   return (
     <>
       <Row>{renderImages()}</Row>
-      {currentPost && (
+      {editPostId && (
         <UpdatePostModal 
-          show={show}
+          show={showEdit}
           handleClose={handleClose}
-          postId={currentPost.id}
+          postId={editPostId}
+        />
+      )}
+
+      {detailsPostId && (
+        <PostDetailsModal 
+          show={showDetails}
+          handleClose={handleCloseDetails}
+          postId={detailsPostId}
         />
       )}
     </>
