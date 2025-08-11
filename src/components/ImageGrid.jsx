@@ -47,10 +47,10 @@ export default function ImageGrid() {
   const renderImages = () => {
     return posts.map((post) => (
       <Col md={4} key={post.id} className="mb-4">
-        <Image src={post.image} fluid style={{cursor: 'pointer'}} onClick={() => handleOpenDetails(post.id)}/>
+        <Image src={post.image} fluid style={{cursor: 'pointer'}} onClick={(e) => {e.preventDefault(); handleOpenDetails(post.id);}}/>
         <div>{post.likes} likes</div>
         <Button onClick={() => dispatch(recordLikes(post.id))} variant="outline-success">
-          <i class="bi bi-hand-thumbs-up"></i>
+          <i className="bi bi-hand-thumbs-up"></i>
         </Button>
         <Button onClick={() => handleShow(post)} variant="outline-primary">
           <i className="bi bi-pencil-square"></i>
