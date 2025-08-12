@@ -52,7 +52,7 @@ export default function ImageGrid() {
         <Button onClick={() => dispatch(recordLikes(post.id))} variant="outline-success">
           <i className="bi bi-hand-thumbs-up"></i>
         </Button>
-        <Button onClick={() => handleShow(post.id)} variant="outline-primary">
+        <Button onClick={() => handleShow(post)} variant="outline-primary">
           <i className="bi bi-pencil-square"></i>
         </Button>
         <Button onClick={() => handleDelete(post.id)} variant="outline-danger">
