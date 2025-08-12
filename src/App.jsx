@@ -1,14 +1,13 @@
-import { useContext, useState } from 'react';
+
 import './App.css';
 import { Button, Col, Row, Container, Image } from 'react-bootstrap';
 import IconButton from './components/IconButton';
 import ProfileHeader from './components/ProfileHeader';
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 import { PROFILE_DATA } from './data';
-import ImageGrid from './components/ImageGrid';
 import Highlight from './components/Highlight';
-import AddPostModal from "./components/AddPostModal";
-
+import AddPostModal from './components/AddPostModal';
+import ImageGrid from './components/ImageGrid';
 
 export const ProfileContext = createContext(null);
 
